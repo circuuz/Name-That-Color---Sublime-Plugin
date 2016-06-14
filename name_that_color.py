@@ -16,8 +16,8 @@ class NameThatColorCommand(sublime_plugin.TextCommand):
 
     selections = self.view.sel()
     for selection in selections:
-      selection_text = self.view.substr(selection)
-      color_name = self.color_name(selection_text).lower().replace(" ", "-")
+      selection_text = self.view.substr(selection).replace( ";", "" ).strip()
+      color_name = self.color_name(selection_text).lower().replace(" ", "-").strip()
       replacement_text = "$" + color_name + ": " + selection_text + ";"
       self.view.replace(edit, selection, replacement_text)
 
