@@ -19,7 +19,7 @@ class NameThatColorCommand(sublime_plugin.TextCommand):
       selection_text = self.view.substr(selection).replace( ";", "" ).strip()
       color_name = self.color_name(selection_text).lower().replace(" ", "-").strip()
       color_name = re.sub( r"[^a-z-]+", "", color_name )
-      replacement_text = "$" + color_name + ": " + selection_text + ";"
+      replacement_text = "$" + color_name + ": " + selection_text.lower() + ";"
       self.view.replace(edit, selection, replacement_text)
 
   def color_name(self, color):
